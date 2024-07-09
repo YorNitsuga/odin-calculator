@@ -31,6 +31,12 @@ clear.addEventListener("click", function() {
     currentScreen.textContent = currentValue;
 })
 
+equal.addEventListener("click", function() {
+    calculate()
+    previousScreen.textContent = '';
+    currentScreen.textContent = previousValue;
+})
+
 function handleNumber(num) {
     if (currentValue.length <= 10) {
         currentValue += num;
@@ -41,4 +47,22 @@ function handleOperator(op) {
     operator = op;
     previousValue = currentValue;
     currentValue = '';  
+}
+
+function calculate() {
+    previousValue = Number(previousValue);
+    currentValue = Number(currentValue);
+
+    if(operator === "+") {
+        previousValue += currentValue;
+    } else if (operator === "-") {
+        previousValue -= currentValue; 
+    } else if (operator === "x") {
+        previousValue *= currentValue;
+    } else {
+        previousValue /= currentValue;
+    }
+
+    previousValue = previousValue.toString();
+    currentValue = currentValue.toString();
 }
